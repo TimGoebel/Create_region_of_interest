@@ -38,7 +38,7 @@ pip install opencv-python-headless numpy
 
 1. **Run the script**:
    ```bash
-   python interactive_polygon_drawer.py
+   python3 Createzones.py
    ```
 2. **Annotate**:
    - Use **Left Mouse Click** to add points for the current polygon **while the video is paused**.

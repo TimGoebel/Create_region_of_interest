@@ -99,16 +99,29 @@ while True:
 cv2.destroyAllWindows()
 cap.release()
 
-# Save polygons to a JSON file
+# Save polygons to a JSON file with Idx and polygon information
 save_path = 'polygons.json'
+
+# Structure the data with Idx and polygon points
+polygon_data = []
+
+for idx, polygon in enumerate(all_polygons, start=1):
+    polygon_info = {
+        'Idx': idx,
+        'Points': [{'X': point[0], 'Y': point[1]} for point in polygon]
+    }
+    polygon_data.append(polygon_info)
+
+# Save the structured data to the JSON file
 with open(save_path, 'w') as file:
-    json.dump(all_polygons, file)
-print(f"All polygons saved to {save_path}")
+    json.dump(polygon_data, file, indent=4)
+
+# print(f"All polygons saved to {save_path}")
 
 # Print all collected polygons
-print("All Polygons:")
-for idx, polygon in enumerate(all_polygons, start=1):
-    print(f"Polygon {idx}:")
-    for point in polygon:
-        print(f"  X: {point[0]}, Y: {point[1]}")
+# print("All Polygons:")
+# for polygon_info in polygon_data:
+#     print(f"Polygon {polygon_info['Idx']}:")
+#     for point in polygon_info['Points']:
+#         print(f"  X: {point['X']}, Y: {point['Y']}")
 
